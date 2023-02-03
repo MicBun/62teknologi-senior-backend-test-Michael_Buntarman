@@ -1,0 +1,146 @@
+definitions:
+  handlers.BusinessRequest:
+    properties:
+      alias:
+        type: string
+      categories_id:
+        items:
+          type: integer
+        type: array
+      coordinates:
+        properties:
+          latitude:
+            type: number
+          longitude:
+            type: number
+        type: object
+      display_phone:
+        type: string
+      distance:
+        type: number
+      image_url:
+        type: string
+      is_closed:
+        type: boolean
+      location:
+        properties:
+          address1:
+            type: string
+          address2:
+            type: string
+          address3:
+            type: string
+          city:
+            type: string
+          country:
+            type: string
+          displayAddress:
+            items:
+              type: string
+            type: array
+          state:
+            type: string
+          zip_code:
+            type: string
+        type: object
+      name:
+        type: string
+      phone:
+        type: string
+      price:
+        type: string
+      transactions:
+        items:
+          type: string
+        type: array
+      url:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /business:
+    post:
+      consumes:
+      - application/json
+      description: Create a business
+      parameters:
+      - description: Business
+        in: body
+        name: business
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BusinessRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Create a business
+      tags:
+      - business
+  /business/search:
+    get:
+      consumes:
+      - application/json
+      description: Get businesses
+      parameters:
+      - description: Location
+        in: query
+        name: location
+        type: string
+      - description: Category
+        in: query
+        name: category
+        type: string
+      - description: Sort by
+        in: query
+        name: sort_by
+        type: string
+      - description: Price
+        in: query
+        name: price
+        type: string
+      - description: Open now
+        in: query
+        name: open_now
+        type: string
+      - description: Limit
+        in: query
+        name: limit
+        type: string
+      - description: Offset
+        in: query
+        name: offset
+        type: string
+      - description: Longitude
+        in: query
+        name: longitude
+        type: string
+      - description: Latitude
+        in: query
+        name: latitude
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Get businesses
+      tags:
+      - business
+swagger: "2.0"
