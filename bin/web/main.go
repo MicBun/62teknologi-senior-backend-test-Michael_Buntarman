@@ -23,16 +23,11 @@ func main() {
 		log.Fatalf("Unable to migrate db %v", err)
 	}
 
-	description := "This is a sample Go User API server. \n\n" +
-		"To get Bearer Token, first you need to login. \n\n" +
-		"Login by POST /login username: admin, password: admin to get Admin Bearer Token. \n\n" +
-		"Login by POST /login username: usera@email.com password: password123 to get User Bearer Token. \n\n" +
-		"Then you can use the Bearer Token to access the other endpoints. \n\n" +
-		"Admin can access CRUD endpoints, while User can only access /users/get GET endpoint. \n\n" +
+	description := "This is a simple CRUD API Server with GIN and GORM. \n\n" +
 		"Checkout my Github: https://github.com/MicBun\n\n" +
 		"Checkout my Linkedin: https://www.linkedin.com/in/MicBun\n\n"
 
-	docs.SwaggerInfo.Title = "Go User API"
+	docs.SwaggerInfo.Title = "Go CRUD API Server with GIN and GORM"
 	docs.SwaggerInfo.Description = description
 
 	c := service.New(db)

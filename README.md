@@ -33,7 +33,7 @@ A repo for technical test
 Go to http://localhost:8080/swagger/index.html to see swagger documentation
 
 ## Live Demo
-Go to //TODO// to see swagger documentation
+Go to https://go-crud-search-gin-gorm.onrender.com/swagger/index.html to see live demo swagger documentation
 
 ## Contact
 If you have any questions, please contact me at
