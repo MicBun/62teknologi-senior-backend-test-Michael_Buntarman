@@ -2,12 +2,27 @@ package database
 
 import (
 	"github.com/MicBun/62teknologi-senior-backend-test-Michael_Buntarman/core"
+	"os"
 
+	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
+func getEnv(key, fallback string) string {
+	if value, ok := os.LookupEnv(key); ok {
+		return value
+	}
+	return fallback
+}
+
 func Connect() (*gorm.DB, error) {
+	dbConnection := getEnv("DB_CONNECTION", "sqlite")
+	postgresDSN := getEnv("DB_DSN", "")
+
+	if dbConnection == "postgres" && postgresDSN != "" {
+		return gorm.Open(postgres.Open(postgresDSN), &gorm.Config{})
+	}
 	return gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{})
 }
 
