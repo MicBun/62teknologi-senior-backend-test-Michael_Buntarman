@@ -28,6 +28,14 @@ func NewApiHandler(container *service.Container) ApiHandlerInterface {
 	}
 }
 
+// Hello godoc
+// @Summary Hello
+// @Description Hello
+// @Tags Hello
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} map[string]interface{}
+// @Router /hello [get]
 func (h *apiHandler) Hello(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "Hello"})
 	return
@@ -115,6 +123,17 @@ func (h *apiHandler) CreateBusiness(c *gin.Context) {
 	return
 }
 
+// EditBusiness godoc
+// @Summary Edit a business
+// @Description Edit a business
+// @Tags business
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Business ID"
+// @Param business body BusinessRequest true "Business"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} string
+// @Router /business/{id} [put]
 func (h *apiHandler) EditBusiness(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
@@ -166,6 +185,16 @@ func (h *apiHandler) EditBusiness(c *gin.Context) {
 	return
 }
 
+// DeleteBusiness godoc
+// @Summary Delete a business
+// @Description Delete a business
+// @Tags business
+// @Accept  json
+// @Produce  json
+// @Param id path int true "Business ID"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} string
+// @Router /business/{id} [delete]
 func (h *apiHandler) DeleteBusiness(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {

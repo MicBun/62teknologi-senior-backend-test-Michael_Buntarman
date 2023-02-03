@@ -86,6 +86,63 @@ paths:
       summary: Create a business
       tags:
       - business
+  /business/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a business
+      parameters:
+      - description: Business ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Delete a business
+      tags:
+      - business
+    put:
+      consumes:
+      - application/json
+      description: Edit a business
+      parameters:
+      - description: Business ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Business
+        in: body
+        name: business
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.BusinessRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Edit a business
+      tags:
+      - business
   /business/search:
     get:
       consumes:
@@ -143,4 +200,20 @@ paths:
       summary: Get businesses
       tags:
       - business
+  /hello:
+    get:
+      consumes:
+      - application/json
+      description: Hello
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Hello
+      tags:
+      - Hello
 swagger: "2.0"
